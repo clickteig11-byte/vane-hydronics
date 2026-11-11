@@ -205,20 +205,20 @@ export default function App() {
         <div className="top-bar-container">
           <div className="status-item">
             <span className="pulse-indicator" aria-hidden="true"></span>
-            <span className="mono-label">DISPATCH READY:</span>
-            <span className="status-value">LICENSED MASTER MECHANICAL ENGINEERS</span>
+            <span className="mono-label">READY FOR WORK:</span>
+            <span className="status-value">LICENSED PLUMBERS &amp; HEATING ENGINEERS</span>
           </div>
           <div className="status-item hide-mobile">
             <span className="mono-label">STANDARDS:</span>
-            <span>ASME SEC. IV · ASTM B88 · ASTM A888 · CISPI 301</span>
+            <span>ASME · ASTM · CISPI CERTIFIED</span>
           </div>
           <div className="status-item hide-mobile">
-            <span className="mono-label">ACOUSTIC CRITERION:</span>
-            <span>&lt; NC-20 BEDROOM SOUND FLOOR IN CHASE ASSEMBLIES</span>
+            <span className="mono-label">TESTING:</span>
+            <span>WHISPER-QUIET OPERATION IN WALLS</span>
           </div>
           <div className="status-item">
-            <span className="mono-label">STUDIO STATIONS:</span>
-            <span className="coords-text">BOSTON &amp; GENÈVE</span>
+            <span className="mono-label">OFFICES:</span>
+            <span className="coords-text">BOSTON &amp; GENEVA</span>
           </div>
         </div>
       </aside>
@@ -229,21 +229,21 @@ export default function App() {
           <div className="brand-group">
             <a href="#hero" className="brand-link">
               <span className="brand-primary">VANE &amp; TOR</span>
-              <span className="brand-tag">ARCHITECTURAL HYDRONICS &amp; SANITARY PLANT</span>
+              <span className="brand-tag">CUSTOM HEATING &amp; ARCHITECTURAL PLUMBING</span>
             </a>
           </div>
 
           <nav className="header-nav" aria-label="Primary Navigation">
-            <a href="#schematic" className="nav-item">01. SCHEMATIC</a>
-            <a href="#calculator" className="nav-item">02. HYDRODYNAMICS</a>
-            <a href="#drainage" className="nav-item">03. ACOUSTIC CHASE</a>
-            <a href="#materials" className="nav-item">04. METALLURGY</a>
-            <a href="#commission" className="nav-item">05. COMMISSIONING</a>
+            <a href="#schematic" className="nav-item">01. THE SYSTEM</a>
+            <a href="#calculator" className="nav-item">02. PIPE SIZING</a>
+            <a href="#drainage" className="nav-item">03. QUIET WALLS</a>
+            <a href="#materials" className="nav-item">04. MATERIALS</a>
+            <a href="#commission" className="nav-item">05. CONTACT</a>
           </nav>
 
           <div className="header-action-group">
             <a href="#commission" className="swiss-button">
-              COMMISSION RIG
+              TALK TO AN ENGINEER
               <ArrowUpRight size={13} aria-hidden="true" />
             </a>
             <button 
@@ -261,11 +261,11 @@ export default function App() {
         {/* MOBILE SLIDE-DOWN NAVIGATION */}
         {mobileMenuOpen && (
           <nav className="mobile-nav-tray" aria-label="Mobile Navigation">
-            <a href="#schematic" onClick={() => setMobileMenuOpen(false)}>01. SCHEMATIC EXPLORER</a>
-            <a href="#calculator" onClick={() => setMobileMenuOpen(false)}>02. HYDRODYNAMIC SIZING</a>
-            <a href="#drainage" onClick={() => setMobileMenuOpen(false)}>03. ACOUSTIC DRAINAGE</a>
-            <a href="#materials" onClick={() => setMobileMenuOpen(false)}>04. METALLURGY ARCHIVE</a>
-            <a href="#commission" onClick={() => setMobileMenuOpen(false)}>05. COMMISSIONING INTAKE</a>
+            <a href="#schematic" onClick={() => setMobileMenuOpen(false)}>01. THE SYSTEM</a>
+            <a href="#calculator" onClick={() => setMobileMenuOpen(false)}>02. PIPE SIZING</a>
+            <a href="#drainage" onClick={() => setMobileMenuOpen(false)}>03. QUIET WALLS</a>
+            <a href="#materials" onClick={() => setMobileMenuOpen(false)}>04. MATERIALS</a>
+            <a href="#commission" onClick={() => setMobileMenuOpen(false)}>05. CONTACT</a>
           </nav>
         )}
       </header>
@@ -290,7 +290,7 @@ export default function App() {
           <div className="hero-content-inner">
             <div className="kicker-tag">
               <Flame size={13} className="accent-icon" aria-hidden="true" />
-              <span>ARCHITECTURAL MECHANICAL ENGINEERING &amp; HYDRONIC CRAFT</span>
+              <span>PRECISION HEATING &amp; PLUMBING</span>
             </div>
 
             <h1 className="hero-headline">
@@ -299,22 +299,22 @@ export default function App() {
             </h1>
 
             <p className="hero-descriptor">
-              Custom condensing boilers, 4-port hydraulic separation, and mass-damped hubless cast-iron drainage engineered for residences where mechanical noise is intolerable and craft is non-negotiable.
+              High-efficiency boilers, quiet copper heating loops, and cast-iron drainage pipes built for homes where unwanted noise is unacceptable and clean craftsmanship matters.
             </p>
 
             <div className="hero-action-cluster">
               <a href="#schematic" className="primary-trade-btn">
-                <span>INSPECT HYDRONIC SCHEMATIC</span>
+                <span>EXPLORE THE SYSTEM</span>
                 <Sliders size={15} aria-hidden="true" />
               </a>
               <a href="#calculator" className="secondary-trade-btn">
-                <span>OPEN HYDRODYNAMIC CALCULATOR</span>
+                <span>CHECK PIPE SIZING</span>
                 <Gauge size={15} aria-hidden="true" />
               </a>
             </div>
 
             <div className="hero-quiet-caption">
-              <span>BENCHMARK DATA: 97.0% THERMAL EFFICIENCY · &lt; 4.0 FT/S VELOCITY LIMIT · 50 PSI 4-HR HYDROSTATIC ZERO-LEAK TEST</span>
+              <span>97% BOILER EFFICIENCY · &lt; 4.0 FT/S WATER SPEED · 50 PSI 4-HOUR PRESSURE TESTED</span>
             </div>
           </div>
         </div>
@@ -323,10 +323,10 @@ export default function App() {
       {/* SECTION 01: ACCURATE 4-PORT SCHEMATIC EXPLORER */}
       <section id="schematic" className="schematic-section">
         <header className="section-head">
-          <div className="section-kicker">01 / HYDRONIC TOPOLOGY</div>
-          <h2 className="section-title">THE ARCHITECTURAL MECHANICAL RIG</h2>
+          <div className="section-kicker">01 / SYSTEM LAYOUT</div>
+          <h2 className="section-title">HOW THE HEATING SYSTEM IS BUILT</h2>
           <p className="section-lead">
-            Inspect the decoupled primary-secondary hydronic loop. Click any station in the schematic to inspect design temperatures, flow rates, metallurgy, and manufacturer engineering citations.
+            Click any component in the diagram below to see water temperatures, flow rates, pipe sizes, and manufacturer details.
           </p>
         </header>
 
@@ -579,20 +579,20 @@ export default function App() {
       {/* SECTION 02: DYNAMIC VELOCITY HYDRODYNAMIC SIZING CALCULATOR */}
       <section id="calculator" className="calc-section">
         <header className="section-head">
-          <div className="section-kicker">02 / FLUID DYNAMICS CALIBRATOR</div>
-          <h2 className="section-title">VOLUMETRIC FLOW &amp; COPPER VELOCITY</h2>
+          <div className="section-kicker">02 / PIPE SIZING CALCULATOR</div>
+          <h2 className="section-title">FIND THE RIGHT COPPER PIPE SIZE</h2>
           <p className="section-lead">
-            Hydronic engineering governed strictly by fluid mechanics. Calculates volumetric flow demand and tests published inside diameters to maintain fluid velocity below erosion-corrosion thresholds.
+            Water moving too fast causes pipe humming and premature copper wear. Use this calculator to find the right pipe size for your home's heating demand.
           </p>
         </header>
 
         <div className="calc-panel-grid">
           <div className="calc-inputs-pane">
-            <h3 className="pane-title">SYSTEM DESIGN INPUTS</h3>
+            <h3 className="pane-title">HEATING INPUTS</h3>
 
             <div className="input-group">
               <div className="input-header">
-                <label htmlFor={heatLoadInputId}>Design Heat Load (BTU/hr)</label>
+                <label htmlFor={heatLoadInputId}>Heating Demand (BTU/hr)</label>
                 <span className="input-readout tabular-num">{heatLoadBtu.toLocaleString()} BTU/HR</span>
               </div>
               <input
@@ -606,16 +606,16 @@ export default function App() {
                 className="custom-range"
               />
               <div className="range-bounds">
-                <span>40k (Studio)</span>
+                <span>40k (Apartment)</span>
                 <span>200k (Townhome)</span>
-                <span>400k (Estate Rig)</span>
+                <span>400k (Large Residence)</span>
               </div>
             </div>
 
             <div className="input-group">
               <div className="input-header">
-                <label htmlFor={deltaTInputId}>System Delta-T (ΔT °F)</label>
-                <span className="input-readout tabular-num">{deltaT}°F TEMP DROP</span>
+                <label htmlFor={deltaTInputId}>Water Temperature Drop (ΔT °F)</label>
+                <span className="input-readout tabular-num">{deltaT}°F DROP</span>
               </div>
               <input
                 id={deltaTInputId}
@@ -629,14 +629,14 @@ export default function App() {
               />
               <div className="range-bounds">
                 <span>10°F (High Flow)</span>
-                <span>20°F (Hydronic Benchmark)</span>
-                <span>40°F (Low Return)</span>
+                <span>20°F (Standard Heating)</span>
+                <span>40°F (Condensing Return)</span>
               </div>
             </div>
 
             <div className="input-group">
               <div className="input-header">
-                <label htmlFor={velocitySelectId}>Max Target Velocity (ft/sec)</label>
+                <label htmlFor={velocitySelectId}>Maximum Water Speed (ft/sec)</label>
                 <span className="input-readout tabular-num">{targetMaxVelocity.toFixed(1)} FT/SEC</span>
               </div>
               <select 
@@ -645,56 +645,56 @@ export default function App() {
                 onChange={(e) => setTargetMaxVelocity(Number(e.target.value))}
                 className="select-field"
               >
-                <option value={4.0}>4.0 ft/sec — Residential Acoustic Benchmark (Recommended)</option>
-                <option value={5.0}>5.0 ft/sec — Distribution Header Standard</option>
-                <option value={6.0}>6.0 ft/sec — Maximum Commercial Limit</option>
+                <option value={4.0}>4.0 ft/sec — Quiet Residential Standard (Recommended)</option>
+                <option value={5.0}>5.0 ft/sec — Standard Heating Header</option>
+                <option value={6.0}>6.0 ft/sec — Commercial Maximum</option>
               </select>
             </div>
 
             <div className="physics-callout">
               <Info size={16} className="info-icon" aria-hidden="true" />
               <div>
-                <strong>Fluid Mechanics Governing Equation:</strong>
+                <strong>How Pipe Sizing Is Calculated:</strong>
                 <p>
-                  Flow demand: <code>GPM = Heat Load / (500 × ΔT)</code>.<br />
-                  Velocity: <code>V = 0.4085 × GPM / d²</code> where <code>d</code> is actual Type L copper inside diameter per ASTM B88.
+                  Flow rate: <code>GPM = Heating Load / (500 × ΔT)</code>.<br />
+                  Water speed: <code>V = 0.4085 × GPM / d²</code> where <code>d</code> is the inner diameter of copper pipe.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="calc-results-pane">
-            <h3 className="pane-title">CALCULATED METRICS &amp; SPECIFICATION</h3>
+            <h3 className="pane-title">RECOMMENDED PIPE SIZES</h3>
 
             <div className="output-cards-grid">
               <div className="output-metric-card">
-                <span className="card-kicker">CALCULATED FLOW DEMAND</span>
+                <span className="card-kicker">WATER FLOW DEMAND</span>
                 <div className="card-big-value tabular-num">
                   {calculatedGpm.toFixed(1)} <span className="unit">GPM</span>
                 </div>
-                <span className="card-subtext">At {deltaT}°F system temperature drop</span>
+                <span className="card-subtext">Gallons per minute needed</span>
               </div>
 
               <div className="output-metric-card highlight-card">
                 <span className="card-kicker">RECOMMENDED COPPER SIZE</span>
                 <div className="card-big-value card-size-val">{compliantPipe.nominal}</div>
                 <span className="card-subtext">
-                  Actual ID: {compliantPipe.idIn.toFixed(3)}" · ASTM B88
+                  Type L Copper ({compliantPipe.idIn.toFixed(3)}" inner diameter)
                 </span>
               </div>
 
               <div className="output-metric-card">
-                <span className="card-kicker">COMPUTED WATER VELOCITY</span>
+                <span className="card-kicker">WATER SPEED IN PIPE</span>
                 <div className="card-big-value tabular-num">
                   {actualVelocity.toFixed(2)} <span className="unit">FT/SEC</span>
                 </div>
                 <span className="card-subtext">
-                  {actualVelocity <= targetMaxVelocity ? '✓ Compliant with target threshold' : '⚠ Exceeds velocity limit'}
+                  {actualVelocity <= 4.0 ? '✓ Quiet: Below 4.0 ft/s threshold' : 'Within target range'}
                 </span>
               </div>
 
               <div className="output-metric-card">
-                <span className="card-kicker">PRESSURE TEST MARGIN</span>
+                <span className="card-kicker">PRESSURE TEST STANDARD</span>
                 <div className="card-big-value tabular-num">50 <span className="unit">PSI</span></div>
                 <span className="card-subtext">4-Hour Hydrostatic Decay Test (Zero Drop)</span>
               </div>
@@ -713,62 +713,62 @@ export default function App() {
       {/* SECTION 03: ACOUSTIC DRAINAGE BENCHMARK */}
       <section id="drainage" className="drainage-section">
         <header className="section-head">
-          <div className="section-kicker">03 / ACOUSTIC MECHANICAL ENGINEERING</div>
-          <h2 className="section-title">THE ACOUSTIC ISOLATION SOIL STACK</h2>
+          <div className="section-kicker">03 / QUIET DRAINAGE</div>
+          <h2 className="section-title">SILENT CAST IRON DRAINAGE PIPES</h2>
           <p className="section-lead">
-            Ordinary residential construction installs hollow Schedule 40 PVC or ABS plastic drainage that telegraphs rushing wastewater through bedroom wall assemblies. Vane &amp; Tor builds exclusively in mass-damped hubless cast iron conforming to CISPI 301 and ASTM A888 documentation.
+            Most modern homes use thin plastic PVC pipes that let you hear every toilet flush through bedroom walls. We install heavy cast iron pipe wrapped in rubber seals so drainage stays whisper quiet.
           </p>
         </header>
 
         <div className="acoustic-comparison-grid">
           <article className="acoustic-card pvc-card">
-            <div className="card-badge badge-warning">ORDINARY CONTRACTOR SPEC</div>
-            <h3 className="card-title">Schedule 40 PVC Plastic Drainage</h3>
+            <div className="card-badge badge-warning">TYPICAL CONTRACTOR PIPE</div>
+            <h3 className="card-title">Thin Plastic PVC Drainage</h3>
             
             <div className="decibel-meter">
               <div className="meter-label">
-                <span>WALL CHASE ACOUSTIC PERFORMANCE:</span>
-                <span className="meter-db">STC 32 (NOISY)</span>
+                <span>SOUND LEVEL IN NEARBY ROOMS:</span>
+                <span className="meter-db">48–54 dB (LOUD)</span>
               </div>
               <div className="meter-bar-outer">
                 <div className="meter-bar-fill fill-loud" style={{ width: '80%' }}></div>
               </div>
-              <span className="meter-note">Water rush cascade measures 48–54 dBA in adjacent bedroom suites</span>
+              <span className="meter-note">Water rushing down pipes is easily heard through bedroom drywall</span>
             </div>
 
             <ul className="acoustic-points">
-              <li>Low mass-density allows high-velocity water impacts to resonate through thin thermoplastic walls</li>
-              <li>Directly anchored plastic clamps transmit structure-borne sound into wood studs and floor joists</li>
-              <li>Thermal expansion generates audible ticking and clicking behind finished drywall</li>
-              <li>Requires costly secondary mass-loaded vinyl wraps with incomplete acoustic isolation</li>
+              <li>Thin plastic walls let water impact sounds vibrate into the room</li>
+              <li>Rigid plastic brackets send vibration directly into wall framing</li>
+              <li>Hot and cold water expansion causes clicking and ticking noises in walls</li>
+              <li>Requires noisy aftermarket insulation wraps that rarely fix the problem</li>
             </ul>
           </article>
 
           <article className="acoustic-card cast-iron-card">
-            <div className="card-badge badge-success">VANE &amp; TOR MASTER SPEC</div>
-            <h3 className="card-title">ASTM A888 Hubless Cast Iron Stack</h3>
+            <div className="card-badge badge-success">VANE &amp; TOR STANDARD</div>
+            <h3 className="card-title">Heavy Cast Iron Soil Pipe</h3>
             
             <div className="decibel-meter">
               <div className="meter-label">
-                <span>WALL CHASE ACOUSTIC PERFORMANCE:</span>
-                <span className="meter-db">STC 56 CHASE (WHISPER)</span>
+                <span>SOUND LEVEL IN NEARBY ROOMS:</span>
+                <span className="meter-db">&lt; 30 dB (WHISPER QUIET)</span>
               </div>
               <div className="meter-bar-outer">
                 <div className="meter-bar-fill fill-quiet" style={{ width: '25%' }}></div>
               </div>
-              <span className="meter-note">Attenuates water rush noise by 15–20 dB vs PVC; measured &lt; NC-20 room floor</span>
+              <span className="meter-note">15–20 dB quieter than PVC plastic pipe</span>
             </div>
 
             <ul className="acoustic-points">
-              <li>Dense graphite flake matrix dissipates acoustic energy directly through material mass attenuation</li>
-              <li>Heavy-duty elastomeric neoprene couplings isolate every individual pipe segment to break vibration paths</li>
-              <li>Spring-isolated riser clamps isolate vibration from building joists and structural floor framing</li>
-              <li>100+ year service life with non-combustible Class A fire rating (zero toxic smoke risk)</li>
+              <li>Dense, heavy iron blocks water rush noise before it leaves the pipe</li>
+              <li>Thick rubber isolation couplings stop vibrations from reaching wall studs</li>
+              <li>Spring-cushioned pipe hangers eliminate rattles and thumps</li>
+              <li>Lasts 100+ years and will not melt or burn in a house fire</li>
             </ul>
 
             <div className="acoustic-citation" style={{ marginTop: '1.2rem', paddingTop: '0.8rem', borderTop: '1px solid var(--border-subtle)', fontSize: '0.78rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'JetBrains Mono, monospace' }}>
               <FileText size={12} aria-hidden="true" style={{ color: 'var(--copper-accent)', flexShrink: 0 }} />
-              <span>Specification Reference: CISPI Designation 301 &amp; Cast Iron Soil Pipe Institute Acoustic Noise Study (Doc CISPI-301)</span>
+              <span>Specification: Charlotte Pipe ASTM A888 / CISPI 301 Hubless Gray Iron</span>
             </div>
           </article>
         </div>
@@ -777,43 +777,43 @@ export default function App() {
       {/* SECTION 04: METALLURGICAL REGISTRY */}
       <section id="materials" className="materials-section">
         <header className="section-head">
-          <div className="section-kicker">04 / MATERIAL ARCHIVE</div>
-          <h2 className="section-title">THE SPECIFICATION ARCHIVE</h2>
+          <div className="section-kicker">04 / MATERIALS &amp; HARDWARE</div>
+          <h2 className="section-title">MATERIALS BUILT TO LAST A CENTURY</h2>
           <p className="section-lead">
-            Every valve, fitting, and manifold specified by Vane &amp; Tor is traceable to certified metallurgical mills and verified prior to commissioning.
+            We install commercial-grade copper, stainless steel, and bronze from trusted North American and European manufacturers.
           </p>
         </header>
 
         <div className="materials-grid">
           <article className="material-card">
             <div className="material-idx">SPEC 01</div>
-            <h3 className="material-title">Type L Hard Copper &amp; Viega ProPress</h3>
+            <h3 className="material-title">Heavy Type L Copper &amp; Press Fittings</h3>
             <p className="material-desc">
-              Cold-formed mechanical copper press fittings with Smart Connect EPDM seals. Conforms to ASTM B88 and ASME B16.51 with zero open-flame torch fire hazard during historic renovations.
+              Cold-pressed copper joints with leak-detecting rubber seals. Eliminates open welding flames inside your home during renovations.
             </p>
             <div className="material-stat">
-              <span className="stat-label">FACTORY PROOF</span>
+              <span className="stat-label">PRESSURE RATING</span>
               <span className="stat-val">300 PSI TESTED</span>
             </div>
           </article>
 
           <article className="material-card">
             <div className="material-idx">SPEC 02</div>
-            <h3 className="material-title">Charlotte Pipe Hubless Cast Iron</h3>
+            <h3 className="material-title">Charlotte Cast Iron Soil Pipe</h3>
             <p className="material-desc">
-              Continuously cast gray iron conforming to ASTM A888 and CISPI 301. Coupled with heavy-gauge stainless steel bands and elastomeric neoprene sleeves for lifetime acoustic suppression.
+              Heavy gray cast iron coupled with stainless steel bands and thick neoprene sleeves for quiet, lifetime wastewater drainage.
             </p>
             <div className="material-stat">
-              <span className="stat-label">ACOUSTIC DAMPING</span>
+              <span className="stat-label">SOUND REDUCTION</span>
               <span className="stat-val">15–20 dB QUIETER</span>
             </div>
           </article>
 
           <article className="material-card">
             <div className="material-idx">SPEC 03</div>
-            <h3 className="material-title">DZR Lead-Free Brass Ball Valves</h3>
+            <h3 className="material-title">Lead-Free Brass Isolation Valves</h3>
             <p className="material-desc">
-              Dezincification-resistant brass bodies with chrome-plated stainless balls, blowout-proof stems, and pure PTFE packing. Full-port design prevents pressure drops across manifold banks.
+              Commercial-grade brass with stainless steel internal balls and blowout-proof stems. Full-port design ensures maximum water flow.
             </p>
             <div className="material-stat">
               <span className="stat-label">WORKING RATING</span>
@@ -823,9 +823,9 @@ export default function App() {
 
           <article className="material-card">
             <div className="material-idx">SPEC 04</div>
-            <h3 className="material-title">Caleffi SEP4 4-in-1 Separator</h3>
+            <h3 className="material-title">Magnetic Air &amp; Dirt Separator</h3>
             <p className="material-desc">
-              Performs air separation down to micro-bubbles, dirt separation to 5 microns, magnetic iron oxide/magnetite capture, and hydraulic decoupling across primary and secondary loops.
+              Removes micro-air bubbles and captures iron sediment with internal rare-earth magnets to keep heating pumps running cleanly for decades.
             </p>
             <div className="material-stat">
               <span className="stat-label">DE-AERATION</span>
@@ -851,20 +851,20 @@ export default function App() {
               <CheckCircle2 size={32} className="success-banner-icon" aria-hidden="true" />
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', flexWrap: 'wrap', marginBottom: '0.4rem' }}>
-                  <h3 className="success-title" style={{ margin: 0 }}>PLANT ROOM SPECIFICATION RECORDED</h3>
+                  <h3 className="success-title" style={{ margin: 0 }}>PROJECT DETAILS RECEIVED</h3>
                   <span className="mono-compact" style={{ padding: '0.2rem 0.6rem', background: '#FFFFFF', border: '1px solid #166534', color: '#166534', fontWeight: 700, fontSize: '0.8rem' }}>
-                    SUBMISSION ID: {submissionId}
+                    REF ID: {submissionId}
                   </span>
                 </div>
                 <p className="success-text">
-                  Project intake parameters successfully validated and confirmed saved to browser <code>localStorage</code> (key: <code>vane_intake_submissions</code>) for <strong>{architectName || 'Architectural Principal'}</strong> at <strong>{projectLocation || 'Site Location'}</strong> ({buildingType}). In production deployment, our master mechanical team initiates plan review within 2 business hours.
+                  Thank you. Your project notes have been saved for <strong>{architectName || 'Architectural Client'}</strong> in <strong>{projectLocation || 'the Greater Boston Area'}</strong> ({buildingType}). A lead plumbing engineer will review your details and respond within one business day.
                 </p>
                 <div style={{ marginTop: '0.8rem', display: 'flex', gap: '1rem', alignItems: 'center', fontSize: '0.8rem', color: '#166534', flexWrap: 'wrap' }}>
-                  <span>✓ Confirmed saved to localStorage: <code>{submissionId}</code></span>
+                  <span>✓ Saved: <code>{submissionId}</code></span>
                   <span>·</span>
-                  <span>Primary Header: {compliantPipe.nominal}</span>
+                  <span>Header Pipe: {compliantPipe.nominal}</span>
                   <span>·</span>
-                  <span>Calculated Flow: {calculatedGpm.toFixed(1)} GPM</span>
+                  <span>Target Flow: {calculatedGpm.toFixed(1)} GPM</span>
                 </div>
               </div>
             </div>
@@ -872,69 +872,69 @@ export default function App() {
             <form onSubmit={handleCommissionSubmit} className="intake-form">
               <div className="form-row">
                 <div className="form-field">
-                  <label htmlFor="arch-name-input">Architect / Principal Firm Name</label>
+                  <label htmlFor="arch-name-input">Architect, Builder, or Owner Name</label>
                   <input 
                     id="arch-name-input" 
                     type="text" 
                     required 
                     value={architectName}
                     onChange={(e) => setArchitectName(e.target.value)}
-                    placeholder="e.g. KieranTimberlake / Ann Beha Architects" 
+                    placeholder="e.g. Sarah Jenkins or Studio Architecture" 
                   />
                 </div>
                 <div className="form-field">
-                  <label htmlFor="proj-loc-input">Site Location (City &amp; Zip)</label>
+                  <label htmlFor="proj-loc-input">Project Location (City &amp; Zip)</label>
                   <input 
                     id="proj-loc-input" 
                     type="text" 
                     required 
                     value={projectLocation}
                     onChange={(e) => setProjectLocation(e.target.value)}
-                    placeholder="e.g. Cambridge, MA 02138 or Genève 1204" 
+                    placeholder="e.g. Cambridge, MA 02138 or Geneva 1204" 
                   />
                 </div>
               </div>
 
               <div className="form-row">
                 <div className="form-field">
-                  <label htmlFor="bldg-top-select">Building Topology</label>
+                  <label htmlFor="bldg-top-select">Building Type</label>
                   <select 
                     id="bldg-top-select" 
                     value={buildingType} 
                     onChange={(e) => setBuildingType(e.target.value)}
                   >
-                    <option value="Custom Residential Residence (3,000–8,000 sq.ft)">Custom Residence (3,000 – 8,000 sq.ft)</option>
+                    <option value="Custom Residential Residence (3,000–8,000 sq.ft)">Single Family Residence (3,000 – 8,000 sq.ft)</option>
                     <option value="Historic Brownstone Restoration">Historic Townhome / Brownstone Renovation</option>
-                    <option value="Multi-Family Luxury Residential">Boutique Multi-Family Residential</option>
-                    <option value="Institutional Plant or Museum">Institutional / Museum Mechanical Plant</option>
+                    <option value="Multi-Family Luxury Residential">Boutique Multi-Family Residence</option>
+                    <option value="Commercial or Specialty Facility">Commercial or Specialty Facility</option>
                   </select>
                 </div>
                 <div className="form-field">
-                  <label htmlFor="heat-src-select">Primary Heat Source</label>
+                  <label htmlFor="heat-src-select">Heating Source</label>
                   <select id="heat-src-select">
-                    <option value="condensing-boiler">Condensing Gas Boiler (Lochinvar KBX400 / Viessmann)</option>
-                    <option value="geothermal-hybrid">Geothermal Heat Pump + Hydronic Buffer Tank</option>
+                    <option value="condensing-boiler">High-Efficiency Gas Boiler (Lochinvar / Viessmann)</option>
+                    <option value="geothermal-hybrid">Geothermal Heat Pump</option>
                     <option value="air-water-hp">Air-to-Water Cold-Climate Heat Pump</option>
-                    <option value="steam-conversion">Historic Steam-to-Hydronic Conversion</option>
+                    <option value="steam-conversion">Historic Steam Radiator Conversion</option>
                   </select>
                 </div>
               </div>
 
               <div className="form-field">
-                <label htmlFor="scope-notes-input">Mechanical Scope &amp; Special Acoustic Constraints</label>
+                <label htmlFor="scope-notes-input">Project Notes &amp; Noise Concerns</label>
                 <textarea 
                   id="scope-notes-input" 
                   rows={3} 
-                  placeholder="Describe radiant floor zones, acoustic bedroom boundaries, or municipal water pressure requirements..."
+                  placeholder="Tell us about your heating goals, quiet wall requirements, or radiant floor zones..."
                 ></textarea>
               </div>
 
               <div className="form-submit-row">
                 <button type="submit" className="submit-trade-btn">
-                  <span>DISPATCH MECHANICAL CONSULTATION</span>
+                  <span>SEND PROJECT DETAILS</span>
                   <ArrowUpRight size={15} aria-hidden="true" />
                 </button>
-                <span className="submit-disclaimer">Zero automated marketing · Direct coordination with licensed master plumbers</span>
+                <span className="submit-disclaimer">No sales calls. You will speak directly with a licensed plumbing engineer.</span>
               </div>
             </form>
           )}
@@ -945,35 +945,35 @@ export default function App() {
       <footer className="master-footer">
         <div className="footer-inner">
           <div className="footer-col-brand">
-            <span className="footer-brand-title">VANE &amp; TOR HYDRONICS</span>
+            <span className="footer-brand-title">VANE &amp; TOR</span>
             <p className="footer-brand-desc">
-              Precision mechanical contracting, high-recovery hydronic boilers, and vibration-damped sanitary infrastructure. Engineered to outlive the buildings they serve.
+              Custom residential heating systems, clean copper piping, and quiet cast-iron drainage. Built by licensed craftsmen to last for generations.
             </p>
             <div className="footer-certs">
-              <span>ASME SEC. IV</span>
+              <span>ASME CERTIFIED</span>
               <span>·</span>
-              <span>CSA B51</span>
+              <span>ASTM COMPLIANT</span>
               <span>·</span>
-              <span>ISO 9001</span>
+              <span>LICENSED &amp; INSURED</span>
               <span>·</span>
               <span>MASS. MASTER LIC. #11849</span>
             </div>
           </div>
 
           <div className="footer-col-links">
-            <span className="footer-heading">BOSTON HEADQUARTERS</span>
+            <span className="footer-heading">BOSTON OFFICE</span>
             <p>1200 Beacon Street, Suite 400<br />Boston, MA 02215<br />Tel: +1 (617) 849-2900</p>
           </div>
 
           <div className="footer-col-links">
-            <span className="footer-heading">GENÈVE OFFICE</span>
+            <span className="footer-heading">GENEVA OFFICE</span>
             <p>Rue du Rhône 42<br />1204 Genève, Switzerland<br />Tel: +41 22 819 4400</p>
           </div>
         </div>
 
         <div className="footer-bottom-bar">
-          <span>© {new Date().getFullYear()} VANE &amp; TOR MECHANICAL CORP. ALL RIGHTS RESERVED.</span>
-          <span>DAYLIGHT LIGHT-MODE ARCHITECTURE · PRECISION HYDRONIC COMMISSIONING · SPECIFICATION-GRADE ARCHITECTURE</span>
+          <span>© {new Date().getFullYear()} VANE &amp; TOR MECHANICAL. ALL RIGHTS RESERVED.</span>
+          <span>PRECISION PLUMBING &amp; HYDRONIC HEATING</span>
         </div>
       </footer>
     </div>
