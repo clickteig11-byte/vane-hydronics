@@ -521,6 +521,10 @@ body {
   padding: 1.8rem;
 }
 
+.station-spec-card[hidden] {
+  display: none !important;
+}
+
 .spec-card-header {
   display: flex;
   justify-content: space-between;

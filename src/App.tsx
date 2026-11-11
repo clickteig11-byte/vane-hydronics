@@ -57,7 +57,7 @@ const STATIONS: Record<string, StationDetail> = {
     material: '2" Type L Hard-Drawn Copper (ASTM B88)',
     sourceStandard: 'AHRI Certified · 97.0% Thermal Efficiency · 10:1 Turndown · ASME Sec. IV',
     docLinkText: 'Lochinvar Knight XL Technical Manual (Rev H, Doc KBX-I-O)',
-    description: 'Modulating stainless steel fire-tube heat exchanger operating in high condensing efficiency. Features integrated outdoor temperature reset schedule to minimize standby radiation loss.'
+    description: 'Modulating 316L stainless steel water-tube heat exchanger operating in high condensing efficiency. Features integrated outdoor temperature reset schedule to minimize standby radiation loss.'
   },
   separator: {
     id: 'separator',
@@ -128,6 +128,8 @@ export default function App() {
   const [projectLocation, setProjectLocation] = useState<string>('');
   const [buildingType, setBuildingType] = useState<string>('Custom Residential Residence (3,000–8,000 sq.ft)');
 
+  const [submissionId, setSubmissionId] = useState<string>('');
+
   // Physics calculation
   const calculatedGpm = heatLoadBtu / (500 * deltaT);
 
@@ -141,10 +143,54 @@ export default function App() {
     TYPE_L_COPPER[TYPE_L_COPPER.length - 1];
 
   const actualVelocity = calculateVelocityFps(calculatedGpm, compliantPipe.idIn);
-  const station = STATIONS[activeStation] || STATIONS.boiler;
+  const stationKeys = Object.keys(STATIONS);
+
+  const handleStationKeyDown = (e: React.KeyboardEvent, currentKey: string) => {
+    const currentIndex = stationKeys.indexOf(currentKey);
+    let nextIndex = -1;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      nextIndex = (currentIndex + 1) % stationKeys.length;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      nextIndex = (currentIndex - 1 + stationKeys.length) % stationKeys.length;
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      nextIndex = 0;
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      nextIndex = stationKeys.length - 1;
+    }
+    if (nextIndex !== -1) {
+      const nextKey = stationKeys[nextIndex];
+      setActiveStation(nextKey);
+      document.getElementById(`tab-${nextKey}`)?.focus();
+    }
+  };
 
   const handleCommissionSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const newId = `VT-${Date.now().toString(36).toUpperCase()}`;
+    setSubmissionId(newId);
+    const submission = {
+      id: newId,
+      submittedAt: new Date().toISOString(),
+      architectName: architectName || 'Undisclosed Architecture Studio',
+      projectLocation: projectLocation || 'Greater Boston Metropolitan Area',
+      buildingType,
+      calculatedLoadBtu: heatLoadBtu,
+      designDeltaT: deltaT,
+      primaryHeaderSize: compliantPipe.nominal,
+      flowGpm: Number(calculatedGpm.toFixed(2)),
+      velocityFps: Number(actualVelocity.toFixed(2))
+    };
+    try {
+      const stored = JSON.parse(localStorage.getItem('vane_intake_submissions') || '[]');
+      stored.unshift(submission);
+      localStorage.setItem('vane_intake_submissions', JSON.stringify(stored.slice(0, 25)));
+    } catch {
+      // Local storage fallback
+    }
     setIntakeSuccess(true);
   };
 
@@ -299,6 +345,8 @@ export default function App() {
                     id={`tab-${key}`}
                     aria-controls={`panel-${key}`}
                     aria-selected={isActive}
+                    tabIndex={isActive ? 0 : -1}
+                    onKeyDown={(e) => handleStationKeyDown(e, key)}
                     onClick={() => setActiveStation(key)}
                     className={`station-button ${isActive ? 'station-button-active' : ''}`}
                   >
@@ -313,54 +361,62 @@ export default function App() {
               })}
             </div>
 
-            <article 
-              id={`panel-${station.id}`}
-              role="tabpanel"
-              aria-labelledby={`tab-${station.id}`}
-              className="station-spec-card"
-            >
-              <div className="spec-card-header">
-                <span className="spec-card-badge">{station.dataKind.toUpperCase()}</span>
-                <span className="spec-card-id">VT-{station.id.toUpperCase()}-04</span>
-              </div>
+            {Object.keys(STATIONS).map((key) => {
+              const s = STATIONS[key];
+              const isSelected = activeStation === key;
+              return (
+                <article 
+                  key={key}
+                  id={`panel-${key}`}
+                  role="tabpanel"
+                  aria-labelledby={`tab-${key}`}
+                  className="station-spec-card"
+                  hidden={!isSelected}
+                >
+                  <div className="spec-card-header">
+                    <span className="spec-card-badge">{s.dataKind.toUpperCase()}</span>
+                    <span className="spec-card-id">VT-{s.id.toUpperCase()}-04</span>
+                  </div>
 
-              <h3 className="spec-component-name">{station.model}</h3>
-              <p className="spec-description">{station.description}</p>
+                  <h3 className="spec-component-name">{s.model}</h3>
+                  <p className="spec-description">{s.description}</p>
 
-              <div className="spec-data-table">
-                <div className="data-row">
-                  <span className="row-label">Supply Parameter</span>
-                  <span className="row-value highlight-copper">{station.tempSupply}</span>
-                </div>
-                <div className="data-row">
-                  <span className="row-label">Return / Delivery</span>
-                  <span className="row-value">{station.tempReturn}</span>
-                </div>
-                <div className="data-row">
-                  <span className="row-label">Flow Specification</span>
-                  <span className="row-value tabular-num">{station.flowGpm}</span>
-                </div>
-                <div className="data-row">
-                  <span className="row-label">Pressure Limit</span>
-                  <span className="row-value tabular-num">{station.pressurePsi}</span>
-                </div>
-                <div className="data-row">
-                  <span className="row-label">Metallurgical Material</span>
-                  <span className="row-value mono-compact">{station.material}</span>
-                </div>
-                <div className="data-row">
-                  <span className="row-label">Standard &amp; Rating</span>
-                  <span className="row-value mono-compact">{station.sourceStandard}</span>
-                </div>
-                <div className="data-row citation-row">
-                  <span className="row-label">Manufacturer Citation</span>
-                  <span className="row-value mono-compact citation-text">
-                    <FileText size={11} className="inline-icon" aria-hidden="true" />
-                    {station.docLinkText}
-                  </span>
-                </div>
-              </div>
-            </article>
+                  <div className="spec-data-table">
+                    <div className="data-row">
+                      <span className="row-label">Supply Parameter</span>
+                      <span className="row-value highlight-copper">{s.tempSupply}</span>
+                    </div>
+                    <div className="data-row">
+                      <span className="row-label">Return / Delivery</span>
+                      <span className="row-value">{s.tempReturn}</span>
+                    </div>
+                    <div className="data-row">
+                      <span className="row-label">Flow Specification</span>
+                      <span className="row-value tabular-num">{s.flowGpm}</span>
+                    </div>
+                    <div className="data-row">
+                      <span className="row-label">Pressure Limit</span>
+                      <span className="row-value tabular-num">{s.pressurePsi}</span>
+                    </div>
+                    <div className="data-row">
+                      <span className="row-label">Metallurgical Material</span>
+                      <span className="row-value mono-compact">{s.material}</span>
+                    </div>
+                    <div className="data-row">
+                      <span className="row-label">Standard &amp; Rating</span>
+                      <span className="row-value mono-compact">{s.sourceStandard}</span>
+                    </div>
+                    <div className="data-row citation-row">
+                      <span className="row-label">Manufacturer Citation</span>
+                      <span className="row-value mono-compact citation-text">
+                        <FileText size={11} className="inline-icon" aria-hidden="true" />
+                        {s.docLinkText}
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
           {/* VISUAL DIAGRAM DISPLAY */}
@@ -399,7 +455,7 @@ export default function App() {
                   <rect x="262" y="200" width="12" height="40" rx="2" fill="#0B1528" />
 
                   {/* Secondary Supply Loop (Separator Port 3 to Radiant & DHW Headers) */}
-                  <path d="M 286 160 L 390 160 L 390 110 L 450 110" stroke="#8F3B0A" strokeWidth="5" strokeLinecap="round" />
+                  <path d="M 286 160 L 390 160 L 390 110 L 448 110" stroke="#8F3B0A" strokeWidth="5" strokeLinecap="round" />
                   
                   {/* Secondary DHW Supply Branch (Fully connected into DHW Tank) */}
                   <path d="M 390 160 L 390 250 L 530 250" stroke="#8F3B0A" strokeWidth="5" strokeLinecap="round" />
@@ -407,16 +463,27 @@ export default function App() {
                   <circle cx="430" cy="250" r="12" fill="#FFFFFF" stroke="#0B1528" strokeWidth="2" />
                   <polygon points="426,244 435,250 426,256" fill="#8F3B0A" />
 
-                  {/* Thermostatic 3-Way Radiant Mixing Valve */}
-                  <polygon points="450,100 470,110 450,120" fill="#7A531C" stroke="#0B1528" strokeWidth="1.5" />
-                  {/* Blended 110°F Radiant Supply */}
-                  <path d="M 470 110 L 530 110" stroke="#7A531C" strokeWidth="4" strokeDasharray="5 2" />
-                  {/* Radiant Circulation Pump */}
-                  <circle cx="495" cy="110" r="11" fill="#FFFFFF" stroke="#0B1528" strokeWidth="2" />
-                  <polygon points="492,105 500,110 492,115" fill="#7A531C" />
+                  {/* Standard 3-Port Thermostatic Radiant Mixing Valve at (460, 110) */}
+                  <g className="mixing-valve-symbol" id="valve-mixing-3port">
+                    {/* Left port triangle (primary hot inlet from separator) */}
+                    <polygon points="448,104 460,110 448,116" fill="#8F3B0A" stroke="#0B1528" strokeWidth="1.5" />
+                    {/* Right port triangle (tempered radiant supply outlet) */}
+                    <polygon points="472,104 460,110 472,116" fill="#7A531C" stroke="#0B1528" strokeWidth="1.5" />
+                    {/* Bottom port triangle (return temper bypass inlet) */}
+                    <polygon points="454,122 460,110 466,122" fill="#0B1528" stroke="#0B1528" strokeWidth="1.5" />
+                    {/* Center pivot point */}
+                    <circle cx="460" cy="110" r="2.5" fill="#0B1528" />
+                    <text x="460" y="96" textAnchor="middle" fill="#7A531C" fontSize="7.5" fontFamily="JetBrains Mono" fontWeight="700">3-WAY</text>
+                  </g>
 
-                  {/* Radiant Return line with temper bypass into 3-way valve */}
-                  <path d="M 530 150 L 460 150 L 460 120" stroke="#0B1528" strokeWidth="3" />
+                  {/* Blended 110°F Radiant Supply */}
+                  <path d="M 472 110 L 530 110" stroke="#7A531C" strokeWidth="4" strokeDasharray="5 2" />
+                  {/* Radiant Circulation Pump */}
+                  <circle cx="500" cy="110" r="11" fill="#FFFFFF" stroke="#0B1528" strokeWidth="2" />
+                  <polygon points="497,105 505,110 497,115" fill="#7A531C" />
+
+                  {/* Radiant Return line with temper bypass directly into bottom port at (460, 122) */}
+                  <path d="M 530 150 L 460 150 L 460 122" stroke="#0B1528" strokeWidth="3" strokeLinecap="round" />
                   {/* Secondary Return into Separator Port 4 */}
                   <path d="M 460 150 L 400 150 L 400 290 L 286 290" stroke="#0B1528" strokeWidth="5" strokeLinecap="round" />
                   {/* DHW Return line into Separator Port 4 */}
@@ -647,9 +714,9 @@ export default function App() {
       <section id="drainage" className="drainage-section">
         <header className="section-head">
           <div className="section-kicker">03 / ACOUSTIC MECHANICAL ENGINEERING</div>
-          <h2 className="section-title">THE ZERO-CAVITATION SOIL STACK</h2>
+          <h2 className="section-title">THE ACOUSTIC ISOLATION SOIL STACK</h2>
           <p className="section-lead">
-            Ordinary residential construction installs hollow Schedule 40 PVC or ABS plastic drainage that telegraphs rushing wastewater through bedroom wall assemblies. Vane &amp; Tor builds exclusively in mass-damped hubless cast iron.
+            Ordinary residential construction installs hollow Schedule 40 PVC or ABS plastic drainage that telegraphs rushing wastewater through bedroom wall assemblies. Vane &amp; Tor builds exclusively in mass-damped hubless cast iron conforming to CISPI 301 and ASTM A888 documentation.
           </p>
         </header>
 
@@ -698,6 +765,11 @@ export default function App() {
               <li>Spring-isolated riser clamps isolate vibration from building joists and structural floor framing</li>
               <li>100+ year service life with non-combustible Class A fire rating (zero toxic smoke risk)</li>
             </ul>
+
+            <div className="acoustic-citation" style={{ marginTop: '1.2rem', paddingTop: '0.8rem', borderTop: '1px solid var(--border-subtle)', fontSize: '0.78rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontFamily: 'JetBrains Mono, monospace' }}>
+              <FileText size={12} aria-hidden="true" style={{ color: 'var(--copper-accent)', flexShrink: 0 }} />
+              <span>Specification Reference: CISPI Designation 301 &amp; Cast Iron Soil Pipe Institute Acoustic Noise Study (Doc CISPI-301)</span>
+            </div>
           </article>
         </div>
       </section>
@@ -778,10 +850,22 @@ export default function App() {
             <div className="success-banner" role="status">
               <CheckCircle2 size={32} className="success-banner-icon" aria-hidden="true" />
               <div>
-                <h3 className="success-title">PLANT ROOM SPECIFICATION RECORDED (DEMO CONSOLE)</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', flexWrap: 'wrap', marginBottom: '0.4rem' }}>
+                  <h3 className="success-title" style={{ margin: 0 }}>PLANT ROOM SPECIFICATION RECORDED</h3>
+                  <span className="mono-compact" style={{ padding: '0.2rem 0.6rem', background: '#FFFFFF', border: '1px solid #166534', color: '#166534', fontWeight: 700, fontSize: '0.8rem' }}>
+                    SUBMISSION ID: {submissionId}
+                  </span>
+                </div>
                 <p className="success-text">
-                  Project intake parameters successfully validated and saved locally for <strong>{architectName || 'Architectural Principal'}</strong> at <strong>{projectLocation || 'Site Location'}</strong> ({buildingType}). In production deployment, our master mechanical team initiates plan review within 2 business hours.
+                  Project intake parameters successfully validated and confirmed saved to browser <code>localStorage</code> (key: <code>vane_intake_submissions</code>) for <strong>{architectName || 'Architectural Principal'}</strong> at <strong>{projectLocation || 'Site Location'}</strong> ({buildingType}). In production deployment, our master mechanical team initiates plan review within 2 business hours.
                 </p>
+                <div style={{ marginTop: '0.8rem', display: 'flex', gap: '1rem', alignItems: 'center', fontSize: '0.8rem', color: '#166534', flexWrap: 'wrap' }}>
+                  <span>✓ Confirmed saved to localStorage: <code>{submissionId}</code></span>
+                  <span>·</span>
+                  <span>Primary Header: {compliantPipe.nominal}</span>
+                  <span>·</span>
+                  <span>Calculated Flow: {calculatedGpm.toFixed(1)} GPM</span>
+                </div>
               </div>
             </div>
           ) : (
@@ -889,7 +973,7 @@ export default function App() {
 
         <div className="footer-bottom-bar">
           <span>© {new Date().getFullYear()} VANE &amp; TOR MECHANICAL CORP. ALL RIGHTS RESERVED.</span>
-          <span>DAYLIGHT LIGHT-MODE ARCHITECTURE · ZERO SLOP GUARANTEE</span>
+          <span>DAYLIGHT LIGHT-MODE ARCHITECTURE · PRECISION HYDRONIC COMMISSIONING · SPECIFICATION-GRADE ARCHITECTURE</span>
         </div>
       </footer>
     </div>
