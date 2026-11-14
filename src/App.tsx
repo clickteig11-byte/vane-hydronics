@@ -200,7 +200,7 @@ export default function App() {
 
   return (
     <div className="plant-wrapper">
-      {/* SWISS TOP BENCHMARK TICKER */}
+      {/* TOP LICENSE & DISPATCH BAR */}
       <aside className="status-top-bar" aria-label="System Standards Readout">
         <div className="top-bar-container">
           <div className="status-item">
@@ -213,17 +213,17 @@ export default function App() {
             <span>ASME · ASTM · CISPI CERTIFIED</span>
           </div>
           <div className="status-item hide-mobile">
-            <span className="mono-label">TESTING:</span>
-            <span>WHISPER-QUIET OPERATION IN WALLS</span>
+            <span className="mono-label">ACOUSTICS:</span>
+            <span>WHISPER-QUIET CAST IRON CHASES</span>
           </div>
           <div className="status-item">
-            <span className="mono-label">OFFICES:</span>
-            <span className="coords-text">BOSTON &amp; GENEVA</span>
+            <span className="mono-label">SHOP &amp; FIELD:</span>
+            <span className="coords-text">GREATER BOSTON &amp; METRO WEST</span>
           </div>
         </div>
       </aside>
 
-      {/* SWISS EDGE HEADER */}
+      {/* MASTER MECHANICAL HEADER */}
       <header className="master-header">
         <div className="header-inner">
           <div className="brand-group">
@@ -243,7 +243,7 @@ export default function App() {
 
           <div className="header-action-group">
             <a href="#commission" className="swiss-button">
-              TALK TO AN ENGINEER
+              TALK TO A MASTER PLUMBER
               <ArrowUpRight size={13} aria-hidden="true" />
             </a>
             <button 
@@ -890,7 +890,7 @@ export default function App() {
                     required 
                     value={projectLocation}
                     onChange={(e) => setProjectLocation(e.target.value)}
-                    placeholder="e.g. Cambridge, MA 02138 or Geneva 1204" 
+                    placeholder="e.g. Cambridge, MA 02138 or Brookline 02445" 
                   />
                 </div>
               </div>
@@ -941,7 +941,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* SWISS FOOTER */}
+      {/* MASTER TRADE FOOTER */}
       <footer className="master-footer">
         <div className="footer-inner">
           <div className="footer-col-brand">
@@ -956,18 +956,18 @@ export default function App() {
               <span>·</span>
               <span>LICENSED &amp; INSURED</span>
               <span>·</span>
-              <span>MASS. MASTER LIC. #11849</span>
+              <span>MASS. MASTER LIC. #19482</span>
             </div>
           </div>
 
           <div className="footer-col-links">
-            <span className="footer-heading">BOSTON OFFICE</span>
-            <p>1200 Beacon Street, Suite 400<br />Boston, MA 02215<br />Tel: +1 (617) 849-2900</p>
+            <span className="footer-heading">MAIN SHOP &amp; ENGINEERING</span>
+            <p>1200 Beacon Street, Suite 400<br />Boston, MA 02215<br />Office: +1 (617) 849-2900</p>
           </div>
 
           <div className="footer-col-links">
-            <span className="footer-heading">GENEVA OFFICE</span>
-            <p>Rue du Rhône 42<br />1204 Genève, Switzerland<br />Tel: +41 22 819 4400</p>
+            <span className="footer-heading">DISPATCH &amp; FIELD SHOP</span>
+            <p>74 Commercial Street<br />Somerville, MA 02143<br />24/7 Field Line: +1 (617) 555-VANE</p>
           </div>
         </div>
 
